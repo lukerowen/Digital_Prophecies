@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Temple_v2.unity
+    path: Assets/Scenes/Digital_Prophecies.unity
     guid: daa683a2f17c63e49b847b17da1eb5fa
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8e78bde2b65835647a51db38e32222bb, type: 2}
