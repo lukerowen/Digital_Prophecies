@@ -1,10 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 namespace Digital_Porphecies {
     public class WebServerHandler : MonoBehaviour {
+
+        public static WebServerHandler instance;
+
+
+        void Awake() {
+            instance = this;
+        }
+        
         // Start is called before the first frame update
         void Start() {
             // StartCoroutine(GetRequest("http://localhost:8080"));
@@ -48,6 +58,7 @@ namespace Digital_Porphecies {
                     Debug.LogError(www.error);
                 }
                 else {
+                    //GOT SUCCESSFUL TEXT BACK!!
                     Debug.Log(www.downloadHandler.text);
                 }
             }
@@ -58,7 +69,10 @@ namespace Digital_Porphecies {
         }
 
         public void SendToServer(string userInput) {
+            Debug.Log("SENDING TO SERVER");
             StartCoroutine(Upload(userInput));
         }
+
+        
     }
 }

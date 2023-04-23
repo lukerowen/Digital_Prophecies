@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
+
 namespace Digital_Porphecies {
     public class HandController : MonoBehaviour {
 
@@ -12,11 +13,16 @@ namespace Digital_Porphecies {
 
         InputDevice _targetDevice;
         Animator _handAnimator;
+
         
         // Start is called before the first frame update
         void Start() {
             InitializeHand();
+            
+
         }
+
+
 
         void InitializeHand() {
             List<InputDevice> devices = new List<InputDevice>();
