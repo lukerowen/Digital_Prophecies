@@ -23,7 +23,10 @@ MonoBehaviour:
     lastTrainDuration: 0
     lastTrainedAt: 1969-12-31T16:00:00-0800
     nextTrainAt: 1969-12-31T16:00:00-0800
-    intents: []
+    intents:
+    - id: 767187544786617
+      name: sendToServer
+      entities: []
     entities: []
     traits: []
     voices:

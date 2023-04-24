@@ -1,25 +1,37 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Meta.WitAi.TTS.Utilities;
 using UnityEngine;
 using UnityEngine.Networking;
 
 
 namespace Digital_Porphecies {
     public class WebServerHandler : MonoBehaviour {
-
         public static WebServerHandler instance;
+
+        public TTSSpeaker tts;
+        
+        bool _hasEverStarted;
 
 
         void Awake() {
             instance = this;
         }
-        
+
         // Start is called before the first frame update
         void Start() {
             // StartCoroutine(GetRequest("http://localhost:8080"));
             // StartCoroutine(Upload());
-            ClearChat();
+
+            _hasEverStarted = false;
+        }
+
+        void Update() {
+            if (!_hasEverStarted && WorldManager.instance.isOracleActive) {
+                _hasEverStarted = true;
+                ClearChat();
+            }
         }
 
         public IEnumerator GetRequest(string uri) {
@@ -31,7 +43,7 @@ namespace Digital_Porphecies {
                 int page = pages.Length - 1;
 
                 print("RESULT : " + webRequest.result);
-                
+
                 switch (webRequest.result) {
                     case UnityWebRequest.Result.ConnectionError:
                     case UnityWebRequest.Result.DataProcessingError:
@@ -60,6 +72,7 @@ namespace Digital_Porphecies {
                 else {
                     //GOT SUCCESSFUL TEXT BACK!!
                     Debug.Log(www.downloadHandler.text);
+                    tts.Speak(www.downloadHandler.text);
                 }
             }
         }
@@ -69,10 +82,14 @@ namespace Digital_Porphecies {
         }
 
         public void SendToServer(string userInput) {
-            Debug.Log("SENDING TO SERVER");
-            StartCoroutine(Upload(userInput));
-        }
+            if (WorldManager.instance.isOracleActive) {
 
-        
+                Debug.Log("SENDING TO SERVER");
+                StartCoroutine(Upload(userInput));
+            }
+            else {
+                print("ORACLE NOT ACTIVE");
+            }
+        }
     }
 }

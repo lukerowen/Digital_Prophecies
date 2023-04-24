@@ -14,11 +14,8 @@ namespace Digital_Porphecies {
 
         bool _isHeld = false;
 
-
         // Start is called before the first frame update
         void Start() {
-            InitializeInputReader();
-
             _recognizer = new DictationRecognizer();
             _recognizer.DictationResult += RecognizerOnDictationResult;
             _recognizer.DictationComplete += RecognizerOnDictationComplete;
